@@ -1,0 +1,94 @@
+{
+  "name": "html-cleaner-vs-code",
+  "displayName": "HTML Cleaner",
+  "description": "HTML Cleaner for Canada.ca and MySSC+ content",
+  "version": "1.0.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:htmlCleaner.cleanEn",
+    "onCommand:htmlCleaner.cleanFr",
+    "onCommand:htmlCleaner.removeUtm",
+    "onCommand:htmlCleaner.convertCanadaLinks",
+    "onCommand:htmlCleaner.canadaUrl",
+    "onCommand:htmlCleaner.copyCode",
+    "onCommand:htmlCleaner.detailsEn",
+    "onCommand:htmlCleaner.detailsFr",
+    "onCommand:htmlCleaner.analyze",
+    "onCommand:htmlCleaner.mysscFootnotes",
+    "onCommand:htmlCleaner.footnotesEn",
+    "onCommand:htmlCleaner.footnotesFr"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "htmlCleaner.cleanEn",
+        "title": "HTML Cleaner: Clean HTML EN"
+      },
+      {
+        "command": "htmlCleaner.cleanFr",
+        "title": "HTML Cleaner: Clean HTML FR"
+      },
+      {
+        "command": "htmlCleaner.removeUtm",
+        "title": "HTML Cleaner: Remove UTM Codes"
+      },
+      {
+        "command": "htmlCleaner.canadaLinks",
+        "title": "HTML Cleaner: Canada.ca Links"
+      },
+      {
+        "command": "htmlCleaner.canadaUrl",
+        "title": "HTML Cleaner: Canada.ca H1 to URL"
+      },
+      {
+        "command": "htmlCleaner.copyCode",
+        "title": "HTML Cleaner: Copy Code"
+      },
+      {
+        "command": "htmlCleaner.detailsEn",
+        "title": "HTML Cleaner: H2 to Details/Summary EN"
+      },
+      {
+        "command": "htmlCleaner.detailsFr",
+        "title": "HTML Cleaner: H2 to Details/Summary FR"
+      },
+      {
+        "command": "htmlCleaner.analyze",
+        "title": "HTML Cleaner: Analyze HTML"
+      }, 
+      {
+        "command": "htmlCleaner.mysscFootnotes",
+        "title": "HTML Cleaner: Footnotes MySSC+"
+      },
+      {
+        "command": "htmlCleaner.footnotesEn",
+        "title": "HTML Cleaner: Footnotes EN"
+      },
+      {
+        "command": "htmlCleaner.footnotesFr",
+        "title": "HTML Cleaner: Footnotes FR"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc",
+    "watch": "tsc -w",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.2",
+    "@types/vscode": "^1.125.0",
+    "typescript": "^5.8.2",
+    "vsce": "^1.25.1"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  }
+}

@@ -1,0 +1,15 @@
+# Node
+node_modules/
+
+# Build output
+dist/
+
+# VSIX packages
+*.vsix
+
+# Logs
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
