@@ -10,8 +10,7 @@ English or French diagnostics.
 You need:
 
 - [Visual Studio Code](https://code.visualstudio.com/) version 1.125 or later.
-- An extension package file ending in `.vsix`. Ask the person who provided this
-  project for the package if you do not have one.
+- The [HTML Cleaner extension package (VSIX)](https://github.com/rizzo-ssc-spc/html-cleaner-vs-code/raw/refs/heads/main/html-cleaner-vs-code-1.0.0-beta.0.vsix).
 
 > This extension is installed from a `.vsix` file. It will not appear in the
 > VS Code Extensions Marketplace unless it is separately published there.
