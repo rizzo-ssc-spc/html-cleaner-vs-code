@@ -4,7 +4,7 @@ export function simplifyNestedParagraphs(
     html: string
 ): string {
 
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
 
     $("li, th, td, dt, dd").each(
         (_, element) => {

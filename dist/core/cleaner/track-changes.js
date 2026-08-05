@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeTrackChanges = removeTrackChanges;
 const cheerio = __importStar(require("cheerio"));
 function removeTrackChanges(html) {
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
     $("ins").each((_, element) => {
         const content = $(element).html();
         $(element)

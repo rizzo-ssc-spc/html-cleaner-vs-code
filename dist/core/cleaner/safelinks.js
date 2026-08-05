@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.decodeSafeLinks = decodeSafeLinks;
 const cheerio = __importStar(require("cheerio"));
 function decodeSafeLinks(html) {
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
     $('a[href*="safelinks.protection.outlook.com"]')
         .each((_, element) => {
         const href = $(element)

@@ -7,10 +7,11 @@ import { detailsSummary } from "./core/details-summary";
 import { findIssues } from "./core/diagnostics";
 import { convertMySSCFootnotes } from "./core/myssc-footnotes";
 import { convertWetFootnotes } from "./core/footnotes";
+import { Language } from "./core/types";
 
 async function transformDocument(
     transform: (html: string) => string
-) {
+): Promise<string | undefined> {
 
     const editor =
         vscode.window.activeTextEditor;
@@ -31,9 +32,29 @@ async function transformDocument(
             editor.document.positionAt(text.length)
         );
 
-    await editor.edit(builder => {
+    const applied = await editor.edit(builder => {
         builder.replace(range, output);
     });
+
+    return applied
+        ? output
+        : undefined;
+}
+
+function showIssues(
+    html: string,
+    language: Language
+) {
+    const issues = findIssues(html, language);
+
+    if (issues.length === 0) {
+        vscode.window.showInformationMessage("No issues found.");
+        return;
+    }
+
+    vscode.window.showWarningMessage(
+        issues.map(issue => issue.message).join("\n")
+    );
 }
 
 export function registerCommands(
@@ -44,24 +65,28 @@ export function registerCommands(
 
         vscode.commands.registerCommand(
             "htmlCleaner.cleanEn",
-            () =>
-                transformDocument(
-                    html => cleanHtml(
-                        html,
-                        "eng"
-                    )
-                )
+            async () => {
+                const html = await transformDocument(
+                    input => cleanHtml(input, "eng")
+                );
+
+                if (html) {
+                    showIssues(html, "eng");
+                }
+            }
         ),
 
         vscode.commands.registerCommand(
             "htmlCleaner.cleanFr",
-            () =>
-                transformDocument(
-                    html => cleanHtml(
-                        html,
-                        "fra"
-                    )
-                )
+            async () => {
+                const html = await transformDocument(
+                    input => cleanHtml(input, "fra")
+                );
+
+                if (html) {
+                    showIssues(html, "fra");
+                }
+            }
         ),
 
         vscode.commands.registerCommand(
@@ -179,30 +204,7 @@ export function registerCommands(
                 const html =
                     editor.document.getText();
 
-                const issues =
-                    findIssues(
-                        html,
-                        "eng"
-                    );
-
-                if (
-                    issues.length === 0
-                ) {
-
-                    vscode.window
-                        .showInformationMessage(
-                            "No issues found."
-                        );
-
-                    return;
-                }
-
-                vscode.window
-                    .showWarningMessage(
-                        issues
-                            .map(i => i.message)
-                            .join("\n")
-                    );
+                showIssues(html, "eng");
             }
         ),
 
@@ -211,7 +213,12 @@ export function registerCommands(
 
             () =>
                 transformDocument(
-                    convertMySSCFootnotes
+                    html => convertMySSCFootnotes(
+                        convertWetFootnotes(
+                            html,
+                            "eng"
+                        )
+                    )
                 )
         ),
 
@@ -239,6 +246,25 @@ export function registerCommands(
                             "fra"
                         )
                 )
+        ),
+
+        vscode.commands.registerCommand(
+            "htmlCleaner.analyzeFr",
+
+            async () => {
+
+                const editor =
+                    vscode.window.activeTextEditor;
+
+                if (!editor) {
+                    return;
+                }
+
+                showIssues(
+                    editor.document.getText(),
+                    "fra"
+                );
+            }
         ),
 
     );

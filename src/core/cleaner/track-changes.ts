@@ -4,7 +4,7 @@ export function removeTrackChanges(
     html: string
 ): string {
 
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
 
     $("ins").each(
         (_, element) => {

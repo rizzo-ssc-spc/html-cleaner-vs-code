@@ -50,12 +50,33 @@ async function transformDocument(transform) {
     const text = editor.document.getText();
     const output = transform(text);
     const range = new vscode.Range(editor.document.positionAt(0), editor.document.positionAt(text.length));
-    await editor.edit(builder => {
+    const applied = await editor.edit(builder => {
         builder.replace(range, output);
     });
+    return applied
+        ? output
+        : undefined;
+}
+function showIssues(html, language) {
+    const issues = (0, diagnostics_1.findIssues)(html, language);
+    if (issues.length === 0) {
+        vscode.window.showInformationMessage("No issues found.");
+        return;
+    }
+    vscode.window.showWarningMessage(issues.map(issue => issue.message).join("\n"));
 }
 function registerCommands(context) {
-    context.subscriptions.push(vscode.commands.registerCommand("htmlCleaner.cleanEn", () => transformDocument(html => (0, cleaner_1.cleanHtml)(html, "eng"))), vscode.commands.registerCommand("htmlCleaner.cleanFr", () => transformDocument(html => (0, cleaner_1.cleanHtml)(html, "fra"))), vscode.commands.registerCommand("htmlCleaner.removeUtm", () => transformDocument(utm_1.removeUtmCodes)), vscode.commands.registerCommand("htmlCleaner.convertCanadaLinks", () => transformDocument(canada_1.convertCanadaLinks)), vscode.commands.registerCommand("htmlCleaner.canadaUrl", async () => {
+    context.subscriptions.push(vscode.commands.registerCommand("htmlCleaner.cleanEn", async () => {
+        const html = await transformDocument(input => (0, cleaner_1.cleanHtml)(input, "eng"));
+        if (html) {
+            showIssues(html, "eng");
+        }
+    }), vscode.commands.registerCommand("htmlCleaner.cleanFr", async () => {
+        const html = await transformDocument(input => (0, cleaner_1.cleanHtml)(input, "fra"));
+        if (html) {
+            showIssues(html, "fra");
+        }
+    }), vscode.commands.registerCommand("htmlCleaner.removeUtm", () => transformDocument(utm_1.removeUtmCodes)), vscode.commands.registerCommand("htmlCleaner.convertCanadaLinks", () => transformDocument(canada_1.convertCanadaLinks)), vscode.commands.registerCommand("htmlCleaner.canadaUrl", async () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             return;
@@ -81,16 +102,13 @@ function registerCommands(context) {
             return;
         }
         const html = editor.document.getText();
-        const issues = (0, diagnostics_1.findIssues)(html, "eng");
-        if (issues.length === 0) {
-            vscode.window
-                .showInformationMessage("No issues found.");
+        showIssues(html, "eng");
+    }), vscode.commands.registerCommand("htmlCleaner.mysscFootnotes", () => transformDocument(html => (0, myssc_footnotes_1.convertMySSCFootnotes)((0, footnotes_1.convertWetFootnotes)(html, "eng")))), vscode.commands.registerCommand("htmlCleaner.footnotesEn", () => transformDocument(html => (0, footnotes_1.convertWetFootnotes)(html, "eng"))), vscode.commands.registerCommand("htmlCleaner.footnotesFr", () => transformDocument(html => (0, footnotes_1.convertWetFootnotes)(html, "fra"))), vscode.commands.registerCommand("htmlCleaner.analyzeFr", async () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
             return;
         }
-        vscode.window
-            .showWarningMessage(issues
-            .map(i => i.message)
-            .join("\n"));
-    }), vscode.commands.registerCommand("htmlCleaner.mysscFootnotes", () => transformDocument(myssc_footnotes_1.convertMySSCFootnotes)), vscode.commands.registerCommand("htmlCleaner.footnotesEn", () => transformDocument(html => (0, footnotes_1.convertWetFootnotes)(html, "eng"))), vscode.commands.registerCommand("htmlCleaner.footnotesFr", () => transformDocument(html => (0, footnotes_1.convertWetFootnotes)(html, "fra"))));
+        showIssues(editor.document.getText(), "fra");
+    }));
 }
 //# sourceMappingURL=commands.js.map

@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.simplifyNestedParagraphs = simplifyNestedParagraphs;
 const cheerio = __importStar(require("cheerio"));
 function simplifyNestedParagraphs(html) {
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
     $("li, th, td, dt, dd").each((_, element) => {
         const node = $(element);
         const paragraphs = node.find("p");

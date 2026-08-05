@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.convertMySSCFootnotes = convertMySSCFootnotes;
 const cheerio = __importStar(require("cheerio"));
 function convertMySSCFootnotes(html) {
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
     const footnotes = {};
     $("dd[id^='fn']").each((_, element) => {
         const fnId = $(element).attr("id");

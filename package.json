@@ -2,10 +2,10 @@
   "name": "html-cleaner-vs-code",
   "displayName": "HTML Cleaner",
   "description": "HTML Cleaner for Canada.ca and MySSC+ content",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.0",
   "publisher": "local",
   "engines": {
-    "vscode": "^1.100.0"
+    "vscode": "^1.125.0"
   },
   "categories": [
     "Other"
@@ -20,6 +20,7 @@
     "onCommand:htmlCleaner.detailsEn",
     "onCommand:htmlCleaner.detailsFr",
     "onCommand:htmlCleaner.analyze",
+    "onCommand:htmlCleaner.analyzeFr",
     "onCommand:htmlCleaner.mysscFootnotes",
     "onCommand:htmlCleaner.footnotesEn",
     "onCommand:htmlCleaner.footnotesFr"
@@ -40,7 +41,7 @@
         "title": "HTML Cleaner: Remove UTM Codes"
       },
       {
-        "command": "htmlCleaner.canadaLinks",
+        "command": "htmlCleaner.convertCanadaLinks",
         "title": "HTML Cleaner: Canada.ca Links"
       },
       {
@@ -61,7 +62,11 @@
       },
       {
         "command": "htmlCleaner.analyze",
-        "title": "HTML Cleaner: Analyze HTML"
+        "title": "HTML Cleaner: Analyze HTML EN"
+      },
+      {
+        "command": "htmlCleaner.analyzeFr",
+        "title": "HTML Cleaner: Analyze HTML FR"
       }, 
       {
         "command": "htmlCleaner.mysscFootnotes",

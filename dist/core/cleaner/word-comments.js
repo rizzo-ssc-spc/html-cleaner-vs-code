@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeWordComments = removeWordComments;
 const cheerio = __importStar(require("cheerio"));
 function removeWordComments(html) {
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
     $('a[href*="#_msocom"]').remove();
     $("div").each((_, element) => {
         const current = $(element);

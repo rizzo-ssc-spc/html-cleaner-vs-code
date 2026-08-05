@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeEmptyAnchors = removeEmptyAnchors;
 const cheerio = __importStar(require("cheerio"));
 function removeEmptyAnchors(html) {
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
     $("a").each((_, element) => {
         const attrs = element.attribs
             ? Object.keys(element.attribs)

@@ -1,0 +1,9 @@
+.gitignore
+.vscode/**
+.vscodeignore
+docs/**
+html-cleaner-test.html
+package-lock.json
+src/**
+tsconfig.json
+**/*.map

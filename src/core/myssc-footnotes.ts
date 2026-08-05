@@ -4,7 +4,7 @@ export function convertMySSCFootnotes(
     html: string
 ): string {
 
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
 
     const footnotes: Record<
         string,

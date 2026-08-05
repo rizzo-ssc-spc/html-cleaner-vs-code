@@ -4,7 +4,7 @@ export function removeEmptyAnchors(
     html: string
 ): string {
 
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
 
     $("a").each(
         (_, element) => {

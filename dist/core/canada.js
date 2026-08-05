@@ -33,7 +33,7 @@ function extractTitle(html) {
         : null;
 }
 function detectFrench(text) {
-    return (/[éèêàùçôîûœâ]/i.test(text)
+    return (/[éèêàùçôîûœâÄÉÈÊÔÛÎ]/.test(text)
         ||
             /\b(le|la|les|un|une|en|de|du|des|pour|avec|sur|dans|et|est)\b/i
                 .test(text));
@@ -43,23 +43,13 @@ function titleToUrl(title, isFrench) {
         .toLowerCase()
         .replace(/[’'`ʹ]/g, "");
     const map = {
-        "à": "a",
-        "á": "a",
-        "â": "a",
-        "ä": "a",
-        "ç": "c",
-        "è": "e",
-        "é": "e",
-        "ê": "e",
-        "ë": "e",
-        "î": "i",
-        "ï": "i",
-        "ô": "o",
-        "ö": "o",
-        "ù": "u",
-        "û": "u",
-        "ü": "u",
-        "œ": "oe"
+        "à": "a", "á": "a", "â": "a", "ã": "a", "ä": "a", "å": "a", "ā": "a",
+        "ç": "c", "ć": "c", "č": "c",
+        "è": "e", "é": "e", "ê": "e", "ë": "e", "ē": "e",
+        "î": "i", "ï": "i", "í": "i", "ī": "i",
+        "ô": "o", "ö": "o", "ò": "o", "ó": "o", "õ": "o", "ø": "o",
+        "û": "u", "ü": "u", "ù": "u", "ú": "u", "ū": "u",
+        "œ": "oe", "æ": "ae", "ß": "ss", "ñ": "n"
     };
     s = s
         .split("")
@@ -83,7 +73,9 @@ function titleToUrl(title, isFrench) {
         "and",
         "or",
         "with",
-        "is"
+        "is",
+        "are",
+        "what"
     ];
     const stopFr = [
         "de",
@@ -103,7 +95,9 @@ function titleToUrl(title, isFrench) {
         "ou",
         "avec",
         "est",
-        "a"
+        "a",
+        "sont",
+        "comment"
     ];
     const stopWords = isFrench
         ? stopFr

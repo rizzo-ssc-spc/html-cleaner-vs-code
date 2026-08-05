@@ -4,7 +4,7 @@ export function decodeSafeLinks(
     html: string
 ): string {
 
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
 
     $('a[href*="safelinks.protection.outlook.com"]')
         .each((_, element) => {

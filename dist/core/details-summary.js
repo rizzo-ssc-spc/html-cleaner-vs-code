@@ -19,8 +19,8 @@ function detailsSummary(html, language) {
         .replace(/<h2 class="first-h2">(.*?)<\/h2>/s, `<div id="lt-tog">
 
 <div class="btn-group mrgn-tp-md mrgn-bttm-md">
-<button type="button">${expandAll}</button>
-<button type="button">${collapseAll}</button>
+<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": "#lt-tog", "print": "on", "type": "on"}'>${expandAll}</button>
+<button type="button" class="btn btn-default wb-toggle" data-toggle='{"selector": "details", "parent": "#lt-tog", "type": "off"}'>${collapseAll}</button>
 </div>
 
 <details>

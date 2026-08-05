@@ -4,7 +4,7 @@ export function removeWordComments(
     html: string
 ): string {
 
-    const $ = cheerio.load(html);
+    const $ = cheerio.load(html, undefined, false);
 
     $('a[href*="#_msocom"]').remove();
 

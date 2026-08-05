@@ -6,6 +6,10 @@ dist/
 
 # VSIX packages
 *.vsix
+!html-cleaner-vs-code-*-beta.*.vsix
+
+# Local reference webapp
+docs/html-cleaner-webapp/
 
 # Logs
 npm-debug.log*
