@@ -4,6 +4,9 @@ node_modules/
 # Build output
 dist/
 
+# test file
+html-cleaner-test.html
+
 # VSIX packages
 *.vsix
 !html-cleaner-vs-code-*-beta.*.vsix

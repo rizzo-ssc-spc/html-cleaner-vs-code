@@ -1,9 +1,7 @@
 # HTML Cleaner for VS Code
 
-Clean and review Canada.ca and MySSC+ HTML directly in Visual Studio Code. The
-extension provides the approved transformations from the HTML Cleaner web app,
-including HTML cleanup, footnotes, Canada.ca links, details/summary blocks, and
-English or French diagnostics.
+Clean and review HTML directly in Visual Studio Code. The
+extension provides the same transformations from the [HTML Cleaner web app](https://ericlavoie3.github.io/html-cleaner/).
 
 ## Before you begin
 
@@ -53,7 +51,7 @@ The HTML Cleaner commands are ready after VS Code reloads.
 Commands replace the contents of the active editor. Use **Edit: Undo** with
 `Ctrl+Z` or `Cmd+Z` immediately if a result is not what you expected.
 
-## Create a VSIX package from this project
+## How to create a VSIX package from this project
 
 Use these steps if you received the source code rather than a `.vsix` file.
 They require a current [Node.js LTS](https://nodejs.org/) installation.
