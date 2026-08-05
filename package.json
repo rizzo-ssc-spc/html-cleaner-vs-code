@@ -72,7 +72,7 @@
       {
         "command": "htmlCleaner.analyzeFr",
         "title": "HTML Cleaner: Analyze HTML FR"
-      }, 
+      },
       {
         "command": "htmlCleaner.mysscFootnotes",
         "title": "HTML Cleaner: Footnotes MySSC+"
@@ -95,8 +95,8 @@
   "devDependencies": {
     "@types/node": "^26.1.2",
     "@types/vscode": "^1.125.0",
-    "typescript": "^5.8.2",
-    "vsce": "^1.25.1"
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.8.2"
   },
   "dependencies": {
     "cheerio": "^1.2.0"
