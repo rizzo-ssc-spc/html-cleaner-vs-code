@@ -1,9 +1,14 @@
 {
   "name": "html-cleaner-vs-code",
   "displayName": "HTML Cleaner",
-  "description": "HTML Cleaner for Canada.ca and MySSC+ content",
+  "description": "HTML Cleaner for the SSC web team.",
   "version": "1.0.0-beta.0",
   "publisher": "local",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rizzo-ssc-spc/html-cleaner-vs-code.git"
+  },
+  "license": "UNLICENSED",
   "engines": {
     "vscode": "^1.125.0"
   },
