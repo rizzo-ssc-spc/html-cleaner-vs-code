@@ -1,5 +1,28 @@
 import { Language } from "./types";
 import { cleanWordMarkup } from "./word";
+import * as jsBeautify from "js-beautify";
+
+const beautifyOptions = {
+    indent_size: 4,
+    wrap_line_length: 0,
+    preserve_newlines: false,
+    end_with_newline: false,
+    inline: [
+        "a",
+        "span",
+        "strong",
+        "b",
+        "em",
+        "i",
+        "u",
+        "cite",
+        "code",
+        "sup",
+        "sub",
+        "abbr",
+        "label"
+    ]
+};
 
 export function cleanHtml(
     html: string,
@@ -273,16 +296,6 @@ export function cleanHtml(
         .replace(/<br \/>\n*/g, "<br />")
         .replace(/<br \/>/g, "<br />\n")
         .replace(/<br>\n*/g, "<br>")
-        .replace(/<br>>/g, "<br>\n")
-        .replace(/\n<li/g, "\n\t<li")
-        .replace(/\n<thead/g, "\n\t<thead")
-        .replace(/\n<\/thead/g, "\n\t</thead")
-        .replace(/\n<tbody/g, "\n\t<tbody")
-        .replace(/\n<\/tbody/g, "\n\t</tbody")
-        .replace(/\n<tr/g, "\n\t\t<tr")
-        .replace(/\n<\/tr/g, "\n\t\t</tr")
-        .replace(/\n<td/g, "\n\t\t\t<td")
-        .replace(/\n<th/g, "\n\t\t\t<th")
         .replace(/<br><br><\/p>/g, "</p>")
         .replace(/&nbsp;<\/li>/g, "</li>")
         .replace(/(<br>)*<\/li>/g, "</li>")
@@ -292,5 +305,9 @@ export function cleanHtml(
         .replace(/<h(\d)>\s*([\w(])/g, "<h$1>$2")
         .replace(/\s*<\/h(\d)>/g, "</h$1>");
 
-    return cleanWordMarkup(html).replace(/&nbsp;<\/p>/g, "</p>");
+    const cleanedHtml = cleanWordMarkup(html)
+        .replace(/&nbsp;<\/p>/g, "</p>")
+        .replace(/<p\b[^>]*>\s*<\/p>/gi, "");
+
+    return jsBeautify.html(cleanedHtml, beautifyOptions);
 }
