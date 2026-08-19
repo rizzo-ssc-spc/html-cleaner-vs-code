@@ -1,7 +1,62 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cleanHtml = cleanHtml;
 const word_1 = require("./word");
+const jsBeautify = __importStar(require("js-beautify"));
+const beautifyOptions = {
+    indent_size: 4,
+    wrap_line_length: 0,
+    preserve_newlines: false,
+    end_with_newline: false,
+    inline: [
+        "a",
+        "span",
+        "strong",
+        "b",
+        "em",
+        "i",
+        "u",
+        "cite",
+        "code",
+        "sup",
+        "sub",
+        "abbr",
+        "label"
+    ]
+};
 function cleanHtml(html, language) {
     html = html
         .replace(/\s+(;|!|,|\)|\]|})/g, "$1")
@@ -267,16 +322,6 @@ function cleanHtml(html, language) {
         .replace(/<br \/>\n*/g, "<br />")
         .replace(/<br \/>/g, "<br />\n")
         .replace(/<br>\n*/g, "<br>")
-        .replace(/<br>>/g, "<br>\n")
-        .replace(/\n<li/g, "\n\t<li")
-        .replace(/\n<thead/g, "\n\t<thead")
-        .replace(/\n<\/thead/g, "\n\t</thead")
-        .replace(/\n<tbody/g, "\n\t<tbody")
-        .replace(/\n<\/tbody/g, "\n\t</tbody")
-        .replace(/\n<tr/g, "\n\t\t<tr")
-        .replace(/\n<\/tr/g, "\n\t\t</tr")
-        .replace(/\n<td/g, "\n\t\t\t<td")
-        .replace(/\n<th/g, "\n\t\t\t<th")
         .replace(/<br><br><\/p>/g, "</p>")
         .replace(/&nbsp;<\/li>/g, "</li>")
         .replace(/(<br>)*<\/li>/g, "</li>")
@@ -285,6 +330,9 @@ function cleanHtml(html, language) {
         .replace(/(\w)\s*<\/h(\d)>/g, "$1</h$2>")
         .replace(/<h(\d)>\s*([\w(])/g, "<h$1>$2")
         .replace(/\s*<\/h(\d)>/g, "</h$1>");
-    return (0, word_1.cleanWordMarkup)(html).replace(/&nbsp;<\/p>/g, "</p>");
+    const cleanedHtml = (0, word_1.cleanWordMarkup)(html)
+        .replace(/&nbsp;<\/p>/g, "</p>")
+        .replace(/<p\b[^>]*>\s*<\/p>/gi, "");
+    return jsBeautify.html(cleanedHtml, beautifyOptions);
 }
 //# sourceMappingURL=cleaner.js.map

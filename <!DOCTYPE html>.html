@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>How to apply for Employment Insurance</title>
+</head>
+<body>
+    <!--
+        HTML Cleaner feature test fixture
+
+        Open this file in VS Code. Save a copy before each test because most
+        commands replace the active document. Run the matching command shown
+        beside each test area. Use a fresh copy when testing Details/Summary or
+        footnote conversion.
+    -->
+
+    <h1>How to apply for Employment Insurance</h1>
+
+    <!-- Canada.ca H1 to URL: copies "apply-employment-insurance". -->
+    <p>Use the Canada.ca H1 to URL command to copy a URL slug.</p>
+
+    <!-- Clean HTML EN / Analyze HTML EN: triggers EM, U, table-header, and French-link warnings. -->
+    <h2>English cleaning and diagnostics</h2>
+    <p style="color: red;" align="center"> This  paragraph has extra spaces , a trailing space </p>
+    <p><strong>Bold text </strong> :</p>
+    <p><em>Document title needing review</em> and <u>underlined text needing review</u>.</p>
+    <p><span>Plain span text</span> and <a name="legacy-anchor">legacy anchor text</a>.</p>
+    <p>March 15 2025 and 3 hours.</p>
+    <p><br />This paragraph starts with an unnecessary break.<br /></p>
+    <p><a href="https://www.canada.ca/fr/services/emploi.html">French link for EN diagnostic</a></p>
+
+    <!-- Clean HTML FR / Analyze HTML FR: tests French spacing and English-link warnings. -->
+    <h2>Nettoyage et diagnostics français</h2>
+    <p>Le montant est 1 000 $ : « exemple »</p>
+    <p>15 janvier 2025 et 3 heures.</p>
+    <p><a href="https://www.canada.ca/en/services/jobs.html">English link for FR diagnostic</a></p>
+
+    <!-- Canada.ca Links: converts both full Canada.ca links below to content paths. -->
+    <h2>Canada.ca links</h2>
+    <p><a href="https://www.canada.ca/en/services/benefits.html">English Canada.ca link</a></p>
+    <p><a href="https://www.canada.ca/fr/services/prestations.html">French Canada.ca link</a></p>
+
+    <!-- Remove UTM Codes: removes the query string beginning with ?utm. -->
+    <h2>UTM tracking links</h2>
+    <p><a href="https://example.test/page?utm_source=newsletter&utm_medium=email">Tracked link</a></p>
+
+    <!-- Clean HTML EN: removes legacy table attributes, adds WET table classes, and marks the first row active. -->
+    <h2>Table cleanup</h2>
+    <table border="1" cellpadding="1" cellspacing="1" width="100%" style="width: 100%;">
+        <tr>
+            <td>Header-like cell without a THEAD</td>
+            <td>Another header-like cell</td>
+        </tr>
+        <tr>
+            <td><p>Cell paragraph</p></td>
+            <td><p>Second cell paragraph</p></td>
+        </tr>
+    </table>
+
+    <!-- Clean HTML EN: normalizes list types and joins adjacent list fragments. -->
+    <h2>List cleanup</h2>
+    <ol type="a">
+        <li> First alphabetic item </li>
+    </ol>
+    <ol>
+        <li>Second alphabetic item</li>
+    </ol>
+
+    <!-- H2 to Details/Summary EN or FR: use a fresh copy; all H2 sections become details panels. -->
+    <h2>First expandable section</h2>
+    <p>Content for the first details panel.</p>
+    <h2>Second expandable section</h2>
+    <ul>
+        <li>Content for the second details panel.</li>
+    </ul>
+
+    <!-- Footnotes EN / FR: converts these Word-style references into WET footnotes. -->
+    <h2>Word-style footnotes</h2>
+    <p>This is an English footnote reference<a href="#_ftn1" name="_ftnref1"><strong>[1]</strong></a>.</p>
+    <p>This is a French footnote reference<a href="#_ftn2" name="_ftnref2">[2]</a>.</p>
+    <p><a href="#_ftnref1" name="_ftn1">[1]</a> English footnote content.</p>
+    <p><a href="#_ftnref2" name="_ftn2">[2]</a> Contenu de la note de bas de page française.</p>
+
+    <!-- Footnotes MySSC+: run on a fresh copy to convert Word footnotes through WET to MySSC+. -->
+    <aside class="wb-fnote" role="note">
+        <h2 id="fn">Footnotes</h2>
+        <dl>
+            <dt>Footnote 3</dt>
+            <dd id="fn3">
+                <p>Existing WET footnote content for the MySSC+ test.</p>
+                <p class="fn-rtn"><a href="#fn3-rf"><span class="wb-inv">Return to footnote </span>3<span class="wb-inv"> referrer</span></a></p>
+            </dd>
+        </dl>
+    </aside>
+    <p>Existing WET footnote reference<sup id="fn3-rf"><a class="fn-lnk" href="#fn3"><span class="wb-inv">Footnote </span>3</a></sup>.</p>
+
+    <!-- Copy Code: confirms the full active document is placed on the clipboard. -->
+</body>
+</html>
